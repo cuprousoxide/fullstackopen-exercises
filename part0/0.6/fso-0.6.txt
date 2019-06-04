@@ -1,0 +1,26 @@
+note over browser:
+user types "drink more water" in form input field and presses submit
+end note
+
+note over browser:
+page's js event handler catches form submit event
+and prevents default form submit behavior
+end note
+
+note over browser:
+event handler grabs form input and creates a new note
+end note
+
+note over browser:
+event handler pushes new note to notes array,
+rerenders note list in the browser,
+and sends note via JSON to server
+end note
+
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa, sends message and timestamp in JSON
+
+note over server:
+server reads JSON, 
+creates a new note object, 
+and adds it to Heroku service's notes array
+end note

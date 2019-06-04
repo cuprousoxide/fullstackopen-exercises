@@ -1,0 +1,33 @@
+note over browser:
+user types "google murray bookchin" in form input field and presses submit
+end note
+
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note, sent form data: "google murray bookchin"
+
+note over server:
+server accesses data in form, 
+creates a new note object, 
+and adds it to Heroku service's notes array
+end note
+
+server-->browser: returns Status Code 302 Found, tells browser to make the following HTTP GET request
+
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+server-->browser: HTML code
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+server-->browser: main.js
+
+note over browser:
+browser starts executing js code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+server-->browser: data.json: [..., {content: "google murray bookchin", date:"2019-06-04T22:12:22.362Z"}]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note
